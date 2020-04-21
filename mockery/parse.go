@@ -88,8 +88,8 @@ func (p *Parser) Parse(path string) error {
 		}
 
 		pkg := pkgs[0]
-		if len(pkg.Errors) > 0 {
-			return pkg.Errors[0]
+		for err := range pkg.Errors {
+			fmt.Printf("Warning, package error:%v\n", err)
 		}
 		if len(pkg.GoFiles) == 0 {
 			continue
